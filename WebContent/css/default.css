@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+.divEstado {
+	font-size: 17px;
+	font-weight: bolder;
+	color: black;
+	text-transform: uppercase;
+	background-color: gray;
+}
+
+.divEstadoON {
+	font-size: 17px;
+	font-weight: bolder;
+	color: blue;
+	text-transform: uppercase;
+	background-color: yellow;
+}
+
+.divEstadoError {
+	font-size: 17px;
+	font-weight: bold;
+	color: red;
+	text-transform: uppercase;
+	background-color: yellow;
+}
+
+.tablaUno {
+	border: 1px;
+	border-color: black;
+	border: solid;
+}
+
+.separador {
+	background-color: solid blue;
+	height: 2px;
+}
+
+.HeadTable {
+	background-color: blue;
+	color: white;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.HeadTableNuevo {
+	background-color: black;
+	color: yellow;
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.trEditar {
+	
+}
+
+.trNormal {
+	
+}
