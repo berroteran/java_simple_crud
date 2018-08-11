@@ -10,4 +10,40 @@ Características:
 - No FrameWork,
 - POO no bien implementada, mas POP(procedimientos) para agilizar el desarrollo.
 - Soporte a Multi Motores de base de datos: H2, sqlite, mysql, SQLServer y postgres.
-- Maven
+- Automatizacion con Maven
+
+**OBJETIVOS**
+
+
+
+**STACK**
+html
+javascript
+jdbc
+pojo
+maven
+
+
+**COMO PROBAR**
+Obetener el codigo usanod git. 
+
+*comandos maven para probar directamente.*
+
+ Tomcat 6
+  mvn -U tomcat8:run
+
+ tomcat 7
+  mvn -U clean install tomcat7:run
+
+tomact 8
+  mvn -U clean install tomcat8:run
+
+Payara Micro (la version de payara para microservicios)
+  mvn clean install payara-micro:bundle payara-micro:start
+
+
+
+** Licencia**
+
+
+** Disclamer**
