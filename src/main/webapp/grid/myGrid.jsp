@@ -5,8 +5,7 @@ Como pueden ver, no estoy utilizando AJAX
 <%@page import="java.sql.ResultSetMetaData"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="ni.per.berroteran.lkf.ejemplos.conexion.DBConexion"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <% 
   response.setHeader("Pragma", "no-cache");
@@ -58,10 +57,13 @@ Como pueden ver, no estoy utilizando AJAX
 	try{
 		//Recuperando parametros
 		String	tabla = request.getParameter("cboTabla") == null ? "" : request.getParameter("cboTabla"),
-				db    =  request.getParameter("txtDB") == null ? "" : request.getParameter("txtDB");
+					db     =  request.getParameter("txtDB") == null ? "" : request.getParameter("txtDB"),
+					motor   =  request.getParameter("cboMotor") == null ? "" : request.getParameter("cboMotor");;
+		//run
 		System.out.println("Tabla recuperada en MyGRID: " + tabla);
+		//Recuperando la llave de la tabla.
 		String llave = DBConexion.getLlaveTabla(db, tabla);
-		
+		//Intentando recuperar los parametros. 
 		ResultSet registros = DBConexion.getInfoTable(tabla);
 		ResultSetMetaData meta = registros.getMetaData();
 		%>
@@ -69,10 +71,12 @@ Como pueden ver, no estoy utilizando AJAX
 		onclick="javascript:fnAddNewRec(document.getElementById('divNuevo') );">
 		<img src="../img/add.gif"> [N]Nuevo
 	</button>
+	
 	<div id="divNuevo" style="display: none;">
-		<form name="frmSaveRecord" action="saveRegistro.jsp"
-			target="ifrmProcesaGrid" method="post">
+	
+		<form name="frmSaveRecord" action="saveRegistro.jsp" target="ifrmProcesaGrid" method="post">
 			<input type="hidden" name="hddTabla" value="<%=tabla%>" />
+			<input type="hidden" name="hddMotor" value="<%=motor%>" />
 			<table id="tnewRecord">
 				<!-- Encabezado -->
 				<tr class="HeadTableNuevo">
@@ -94,27 +98,24 @@ Como pueden ver, no estoy utilizando AJAX
 					<td>
 						<%if( meta.isAutoIncrement(i) ){ %> <i>-</i> <%}else{ 
 							//utilizo los sql.types para validar, el tipo 15 es el tipo String %>
-						<input type="text" field="<%=meta.getColumnName(i)%>"
-						tipo="<%=meta.getColumnType(i)%>" />
+						<input type="text" field="<%=meta.getColumnName(i)%>" tipo="<%=meta.getColumnType(i)%>" />
 					</td>
 					<%}%>
-					<%}
+				<%}
 					//creando cadena para guardar
-						%>
-					<td colspan="2"><button type="submit"
-							onclick="javascript:fnSaveRecord(this.parentNode.parentNode);">
+					%>
+					<td colspan="2">
+						<button type="submit" onclick="javascript:fnSaveRecord(this.parentNode.parentNode);">
 							<img src="../img/save.png" /> ::Guardar
-						</button></td>
+						</button>
+					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="hddCols" value="<%=cols%>" /> <input
-				type="hidden" name="hddvals" value="" id="hddvals" /> <input
-				type="hidden" name="hddtipos" value="" id="hddtipos" /> <i
-				style="font-size: 12px; color: red;">NOTA: Para tipos String
-				color entre commillas, por ahora debe ser asi.</i> <i
-				style="font-size: 10px;">Nota: Los campos
-				autogenerados(numericos u alfanums)[*] no permite ingresan valor, el
-				Ícono de llave indica que es parte de la PrimaryKey.</i>
+			<input type="hidden" name="hddCols" value="<%=cols%>" />
+			<input type="hidden" name="hddvals" value="" id="hddvals" />
+			<input type="hidden" name="hddtipos" value="" id="hddtipos" />
+			<i style="font-size: 12px; color: red;">NOTA: Para tipos String color entre commillas, por ahora debe ser asi.</i>
+			<i style="font-size: 10px;">Nota: Los campos autogenerados(numericos u alfanums)[*] no permite ingresan valor, el Ícono de llave indica que es parte de la PrimaryKey.</i>				
 		</form>
 	</div>
 
@@ -137,10 +138,9 @@ Como pueden ver, no estoy utilizando AJAX
 			<%for (int j=1;j<=meta.getColumnCount();j++){%>
 			<td><%=registros.getString(j)%></td>
 			<%} %>
-			<td><img src="../img/bot_lap_gris.gif"
-				onclick="javascript:editarRec(this.parentNode, this.parentNode.parentNode,<%=meta.getColumnCount()%> );"
-				onmouseover="this.src='../img/bot_lap.gif'"
-				onmouseout="this.src='../img/bot_lap_gris.gif'" /></td>
+			<td>
+				<img src="../img/bot_lap_gris.gif" onclick="javascript:editarRec(this.parentNode, this.parentNode.parentNode,<%=meta.getColumnCount()%> );" onmouseover="this.src='../img/bot_lap.gif'" onmouseout="this.src='../img/bot_lap_gris.gif'" />
+			</td>
 			<%
 					//creando cadena a pasar al boton eliminar para poder proceder, lo importante, obviamente es la llave
 					
@@ -150,29 +150,30 @@ Como pueden ver, no estoy utilizando AJAX
 						cadenaDEL = cadenaDEL.concat( meta.getColumnName(i) + " = '" + registros.getString(i) + "' " );
 					}
 					%>
-			<td><button type="submit"
-					onclick='javascript:fnBorrarRec( this.parentNode.parentNode, this.getAttribute("cadena") );'
-					cadena="<%=cadenaDEL%>">
+			<td>
+				<button type="submit" onclick='javascript:fnBorrarRec( this.parentNode.parentNode, this.getAttribute("cadena") );' cadena="<%=cadenaDEL%>">
 					<img src="../img/delete.gif">
-				</button></td>
+				</button>
+			</td>
 		</tr>
 		<%}
 			}%>
 	</table>
-	<div style="display: none;">
-		<iframe name="ifrmProcesaGrid" id="ifrmProcesaGrid" height="0"
-			width="0" frameborder="0"></iframe>
-		<form name="frmBorra" id="frmBorra" method="post"
-			target="ifrmProcesaGrid" action="borraRegistro.jsp">
-			<input type="hidden" name="txtTabla" value="<%=tabla%>" /> <input
-				type="hidden" name="txtFiltro" value="" id="txtFiltroDEL" /> <input
-				type="hidden" name="hddIndice" value="" id="hddIndice" />
+	<br/>
+	...
+	<div style="">
+		<iframe name="ifrmProcesaGrid" id="ifrmProcesaGrid" height="100" width="100%" frameborder="0"></iframe>
+			<form name="frmBorra" id="frmBorra" method="post" target="ifrmProcesaGrid" action="borraRegistro.jsp">
+				<input type="hidden" name="txtTabla" value="<%=tabla%>" />
+				<input type="hidden" name="txtFiltro" value="" id="txtFiltroDEL" />
+				<input type="hidden" name="hddIndice" value="" id="hddIndice" />
 		</form>
 	</div>
+	.
 	<%}catch(Exception e){
 		e.printStackTrace();
 		out.print(e);
-	}
-	%>
+	}%>
 </body>
+
 </html>
