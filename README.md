@@ -12,11 +12,12 @@ Características:
 - Soporte a Multi Motores de base de datos: H2, sqlite, mysql, SQLServer y postgres.
 - Automatizacion con Maven
 
-**OBJETIVOS**
+# OBJETIVOS
 
 
 
-**STACK**
+# STACK
+
 html
 javascript
 jdbc
@@ -24,7 +25,8 @@ pojo
 maven
 
 
-**COMO PROBAR**
+# COMO PROBAR
+
 Obetener el codigo usanod git. 
 
 *comandos maven para probar directamente.*
