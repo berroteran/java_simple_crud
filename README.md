@@ -43,7 +43,7 @@ Payara Micro (la version de payara para microservicios)
 
 
 
-** Licencia**
+**Licencia**
 
 
-** Disclamer**
+**Disclamer**
