@@ -5,7 +5,7 @@ Cada x punto en el tiempo alguien quiere iniciarse en el mundo JAVA y crear algu
 
 Creado hace algún tiempo lo comparto para quien sea útil.
 
-Características:
+**Características:**
 - Pure HTML, JavaScript, DHTML.
 - No FrameWork,
 - POO no bien implementada, mas POP(procedimientos) para agilizar el desarrollo.
@@ -45,7 +45,7 @@ Payara Micro (la version de payara para microservicios)
 
 
 
-**Licencia**
+# Licencia
 
 
-**Disclamer**
+# Disclamer
