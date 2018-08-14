@@ -1,9 +1,8 @@
 # Simple JAVA CRUD 
-JSP + MySQL
+JSP + algunos motores de DB (MySQL, postgresql, etc)
 
-Cada x punto en el tiempo alguien quiere iniciarse en el mundo JAVA y crear alguna aplicación webDinamica, tal vez esto pueda ayudarte.
+Cada x punto en la línea del tiempo, alguien quiere iniciarse en el mundo JAVA y crear alguna aplicación web dinámica, he creo esto con el objetivo de darles algo con que iniciar; espero sea de ayuda.
 
-Creado hace algún tiempo lo comparto para quien sea útil.
 
 **Características:**
 - Pure HTML, JavaScript, DHTML.
@@ -13,7 +12,7 @@ Creado hace algún tiempo lo comparto para quien sea útil.
 - Automatizacion con Maven
 
 # OBJETIVOS
-
+Libre, pedagócigo, facil, entendible, básico, from scratch.
 
 
 # STACK
