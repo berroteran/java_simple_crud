@@ -28,13 +28,20 @@ maven
 
 Obetener el codigo usando  git. 
 
-*git https://github.com/berroteran/java_simple_crud.git*
+*git clone https://github.com/berroteran/java_simple_crud.git*
 
 
 ## Comandos maven
-Construir
+Compilar
 
-*mvn build*
+*mvn compile*
+
+Crear el WAR
+
+*mvn package*  or *mvn war:war*
+
+
+
 
 
 ## comandos maven para probar directamente.
