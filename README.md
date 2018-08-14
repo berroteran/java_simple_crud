@@ -44,7 +44,7 @@ Crear el WAR
 
 
 
-## comandos maven para probar directamente.
+## Comandos maven para probar directamente.
 
 ### Tomcat 6
  
@@ -76,4 +76,4 @@ M.I.T. /  CC by
 
 
 
-# Disclamer
+# Dissclamer
