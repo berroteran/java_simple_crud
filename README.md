@@ -48,7 +48,7 @@ Crear el WAR
 
 ### Tomcat 6
  
-  *mvn -U tomcat8:run*
+  *mvn -U tomcat:run*
 
 ### tomcat 7
  
