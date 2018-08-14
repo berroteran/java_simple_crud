@@ -27,20 +27,28 @@ maven
 
 # COMO PROBAR
 
-Obetener el codigo usanod git. 
+Obetener el codigo usando  git. 
 
-*comandos maven para probar directamente.*
+git https://github.com/berroteran/java_simple_crud.git 
 
- Tomcat 6
+
+
+## comandos maven para probar directamente.
+
+ *Tomcat 6*
+ 
   mvn -U tomcat8:run
 
- tomcat 7
+ *tomcat 7*
+ 
   mvn -U clean install tomcat7:run
 
-tomact 8
+*tomact 8*
+
   mvn -U clean install tomcat8:run
 
 Payara Micro (la version de payara para microservicios)
+
   mvn clean install payara-micro:bundle payara-micro:start
 
 
