@@ -48,7 +48,7 @@ Crear el WAR
 
 ### Tomcat 6
  
-  *mvn -U tomcat:run*
+  *mvn -U tomcat6:run*
 
 ### tomcat 7
  
@@ -60,13 +60,19 @@ Crear el WAR
 
 ### Payara Micro (la version de payara para microservicios)
 
+ solo iniciar
+  *mvn payara-mcro:start*
   *mvn clean install payara-micro:bundle payara-micro:start*
+  
+  Limpiar, compilar, instalar e iniciar.
+  *mvn clean compile install payara-micro:bundle payara-micro:start*
 
 
 
 
 # Licencia
 M.I.T. /  CC by
+
 
 
 
