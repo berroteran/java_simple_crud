@@ -32,28 +32,31 @@ Obetener el codigo usando  git.
 git https://github.com/berroteran/java_simple_crud.git 
 
 
+## Comandos maven
+Construir *mvn build*
+
 
 ## comandos maven para probar directamente.
 
- *Tomcat 6*
+### Tomcat 6
  
+  *mvn -U tomcat8:run*
+
+### tomcat 7
+ 
+  *mvn -U tomcat7:run*
+
+### tomact 8
+
   mvn -U tomcat8:run
 
- *tomcat 7*
- 
-  mvn -U clean install tomcat7:run
+### Payara Micro (la version de payara para microservicios)
 
-*tomact 8*
-
-  mvn -U clean install tomcat8:run
-
-Payara Micro (la version de payara para microservicios)
-
-  mvn clean install payara-micro:bundle payara-micro:start
+  *mvn clean install payara-micro:bundle payara-micro:start*
 
 
 
 # Licencia
-
+M.I.T,  CC by
 
 # Disclamer
