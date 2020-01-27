@@ -1,24 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jug.nicaragua.taller2020.crud</groupId>
-	<artifactId>crudSimple</artifactId>
+	<artifactId>simpleCRUD</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<version>1.0</version>
+
 
 	<name>Crud Simple ejemplo usando Maven Webapp by Omar Berroteran</name>
-	<url>http://maven.apache.org</url>
 
 	<!-- Propiedades del proyecto -->
 	<properties>
-		<junit.version>4.11</junit.version>
 		<jdk.version>1.8</jdk.version>
+		<junit.version>4/.11</junit.version>
+		<maven.compiler.source>${jdk.version}</maven.compiler.source>
+		<maven.compiler.target>${jdk.version}</maven.compiler.target>
+		<app.name>${project.artifactId}</app.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>${properties.jdk.version}</maven.compiler.source>
-		<maven.compiler.target>${properties.jdk.version}</maven.compiler.target>
-		<app.name>${project.artifactId}</app.name>
+
 	</properties>
 
 	<!-- Desde donde descargar las librerias. -->
@@ -74,13 +76,19 @@
 
 	<!-- librerias requeridas -->
 	<dependencies>
-
+		<!-- for the logs -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
-			<!-- para el log -->
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.13.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
 		<dependency>
 			<!-- para pruebas unitarias -->
 			<groupId>junit</groupId>
@@ -132,17 +140,18 @@
 	</dependencies>
 
 
-	<!-- comando construi, es lo que hara para compilar y desplegar en los servidores -->
+	<!-- comando construir, es lo que hara para compilar y desplegar en los 
+		servidores -->
 	<build>
 		<finalName>crudSimple</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>${properties.jdk.version}</source>
-					<target>${properties.jdk.version}</target>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -150,13 +159,13 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.2</version>
 				<configuration>
-					<path>/${project.artifactId}</path>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<url>http://localhost:8080/manager</url>
-					<server>TomcatServer</server>
 				</configuration>
 			</plugin>
 
+
+
+			<!-- configuration para Tomcat -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -164,7 +173,6 @@
 					<path>/${project.artifactId}</path>
 					<server>tomcat</server>
 					<url>http://localhost:8080/manager/text</url>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -174,32 +182,26 @@
 					<path>/${project.artifactId}</path>
 					<server>tomcat</server>
 					<url>http://localhost:8080/manager/text</url>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>fish.payara.maven.plugins</groupId>
 				<artifactId>payara-micro-maven-plugin</artifactId>
-				<version>1.0.0</version>
+				<version>1.0.6</version>
 				<executions>
 					<execution>
 						<goals>
 							<goal>start</goal>
-							 <goal>bundle</goal>
-							  <goal>stop</goal>
+							<goal>bundle</goal>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
 					<useUberJar>true</useUberJar>
 					<daemon>true</daemon>
-					<immediateExit>false</immediateExit>
-					<path>/${project.artifactId}</path>
-					
 					<payaraVersion>5.193</payaraVersion>
-					
-					
 				</configuration>
 			</plugin>
 
@@ -211,7 +213,11 @@
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat6-maven-plugin</artifactId>
-					<version>2.3-SNAPSHOT</version>
+
+					<configuration>
+						<url>http:// localhost:8080/manager/text</url>
+						<server>TomcatServer</server>
+					</configuration>
 				</plugin>
 				<!-- TOMCAT 7 -->
 				<plugin>
@@ -220,9 +226,7 @@
 					<version>2.2</version>
 					<configuration>
 						<url>http:// localhost:8080/manager/text</url>
-						<server>TomcatServer</server> 
-						<username>*yourtomcatusername*</username>
-						<password>*yourtomcatpassword*</password>
+						<server>TomcatServer</server>
 					</configuration>
 				</plugin>
 				<!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat8-maven-plugin -->
@@ -232,9 +236,7 @@
 					<version>3.0-r1756463</version>
 					<configuration>
 						<url>http:// localhost:8080/manager/text</url>
-						<server>TomcatServer</server> 
-						<username>*yourtomcatusername*</username>
-						<password>*yourtomcatpassword*</password>
+						<server>TomcatServer</server>
 					</configuration>
 				</plugin>
 
@@ -245,11 +247,14 @@
 
 	<description>Proyecto de Ejemplo de un CRUD echo en java con tecnologia basica.</description>
 	<organization>
-		<name>berroteran</name>
+		<url>https://javanicaragua.org/</url>
+		<name>Jug Nicaragua</name>
 	</organization>
 	<scm>
 		<tag>1</tag>
-		<developerConnection>lkf</developerConnection>
+		<url>https://github.com/jugnicaragua</url>
+		<developerConnection>Omar berroteran</developerConnection>
 	</scm>
 
+	<url>https://javanicaragua.org/</url>
 </project>

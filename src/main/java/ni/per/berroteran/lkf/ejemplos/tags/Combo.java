@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class Combo {
 
-    public static void getMotoresSoportados2OptionSelect() throws IOException {
-	
-    }
+  public static void getMotoresSoportados2OptionSelect() throws IOException {
+
+  }
 
 }
